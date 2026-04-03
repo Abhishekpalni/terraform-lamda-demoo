@@ -2,8 +2,8 @@ provider "aws" {
     region = "ap-south-1"
   
 }
-resource "aws_iam_role" "welcomeee" {
-  name = "welcomeee"
+resource "aws_iam_role" "welcomeeee" {
+  name = "welcomeeee"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -11,7 +11,7 @@ resource "aws_iam_role" "welcomeee" {
         Action = "sts:AssumeRole"
         Effect = "Allow"
         Principal = {
-          Service = "ec2.amazonaws.com"
+          Service = "lambda.amazonaws.com"
         }
       },
     ]
@@ -22,8 +22,8 @@ resource "aws_iam_role" "welcomeee" {
   }
 }
 
-resource "aws_iam_role_policy_attachment" "welcomeee" {
-  role       = aws_iam_role.welcomeee.name
+resource "aws_iam_role_policy_attachment" "welcomeeee" {
+  role       = aws_iam_role.welcomeeee.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
@@ -38,7 +38,7 @@ data "archive_file" "init" {
 resource "aws_lambda_function" "examplee" {
   filename      = data.archive_file.init.output_path
   function_name = "abhi-2026-demooo"
-  role          = aws_iam_role.welcomeee.arn
+  role          = aws_iam_role.welcomeeee.arn
   handler       = "new.lambda_handler"
   source_code_hash=data.archive_file.init.output_base64sha256
   
