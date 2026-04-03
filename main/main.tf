@@ -35,9 +35,9 @@ data "archive_file" "init" {
   output_path = "${path.module}/../new/new.zip"
 }
 
-resource "aws_lambda_function" "example" {
+resource "aws_lambda_function" "examplee" {
   filename      = data.archive_file.init.output_path
-  function_name = "abhi-2026-demo"
+  function_name = "abhi-2026-demooo"
   role          = aws_iam_role.welcomee.arn
   handler       = "new.lambda_handler"
   source_code_hash=data.archive_file.init.output_base64sha256
