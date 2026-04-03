@@ -23,13 +23,17 @@ jobs:
           aws-region: ap-south-1
 
       - name: Terraform Init
+        working-directory: main
         run: terraform init
 
       - name: Terraform Validate
+        working-directory: main
         run: terraform validate
 
       - name: Terraform Plan
+        working-directory: main
         run: terraform plan -input=false
 
       - name: Terraform Apply
+        working-directory: main
         run: terraform apply -auto-approve
